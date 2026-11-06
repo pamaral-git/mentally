@@ -49,3 +49,10 @@ A private, self-hosted, single-file web app that acts as physical health reposit
 - 👩‍⚕️ [Safety Plan Explained, Therapist Emma McAdam](https://youtu.be/C2Ja4R6Mq4Y)
 - 👩‍⚕️ [Safety Plan Guide, Therapist Kati Morton](https://youtu.be/om5E4K1bCL)
 - Templates: [⓵](https://988lifeline.org/wp-content/uploads/2016/08/Brown_StanleySafetyPlanTemplate.pdf) • [⓶](https://therapyinanutshell.com/wp-content/uploads/2025/04/Revised.png) • [⓷](https://therapyinanutshell.com/wp-content/uploads/2025/04/Revised-2.png) • [App](https://suicidesafetyplan.app)
+
+
+---
+**ROADMAP:**
+
+- **Private Reflection** ◦ User journaling and safety plan drafting running locally to help articulate warning signs, strategies, and reasons to live from the user's own words
+- **Deep Session** ◦ [Inspired by this](https://youtube.com/shorts/wwiTBL_hYIM) we will add this same guided structured reflection leveraging the user's context completely locally.
