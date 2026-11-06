@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Artistically  — Mentally</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  try {
+    const savedTheme = localStorage.getItem("mediaQuotes_theme") || localStorage.getItem("safetyPlan_theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = (savedTheme === "dark" || savedTheme === "light") ? savedTheme : (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (e) {}
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    color-scheme: light;
+    --bg: #f6f4ef;
+    --bg-card: #fffefa;
+    --bg-card-hover: #ffffff;
+    --text-primary: #151410;
+    --text-secondary: #514d45;
+    --text-muted: #6f6b64;
+    --border: #e9e2d2;
+    --border-strong: #d8d0bd;
+    --border-focus: #4a5e1a;
+    --accent: #4a5e1a;
+    --accent-subtle: #edf2e4;
+    --accent-bright: #b7ff3c;
+    --warm: #f2e2c4;
+    --blue-subtle: #dbeaf1;
+    --danger: #b33927;
+    --danger-subtle: #fdeeed;
+    --shadow: 0 12px 36px rgba(72, 63, 42, 0.08);
+    --shadow-dropdown: 0 14px 40px rgba(25, 24, 20, 0.14);
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --radius: 12px;
+    --radius-sm: 6px;
+    
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0e0e0c;
+    --bg-card: #161614;
+    --bg-card-hover: #1e1e1a;
+    --text-primary: #f5f2eb;
+    --text-secondary: #a69f92;
+    --text-muted: #797367;
+    --border: rgba(245, 242, 235, 0.12);
+    --border-strong: rgba(245, 242, 235, 0.24);
+    --border-focus: #b7ff3c;
+    --accent: #b7ff3c;
+    --accent-subtle: rgba(183, 255, 60, 0.12);
+    --accent-bright: #c8ff5e;
+    --warm: #322818;
+    --blue-subtle: #162833;
+    --danger: #f87171;
+    --danger-subtle: rgba(255, 107, 107, 0.14);
+    --shadow: 0 16px 44px rgba(0, 0, 0, 0.48);
+    --shadow-dropdown: 0 18px 48px rgba(0, 0, 0, 0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+    transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(246, 244, 239, 0.92);
+    border-bottom: 1px solid var(--border);
+    padding: 10px var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  }
+
+  [data-theme="dark"] .topbar {
+    background: rgba(14, 14, 12, 0.9);
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .topbar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    padding: 5px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .topbar-back:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+
+  .topbar-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .topbar-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s var(--ease-out);
+    position: relative;
+    font-size: 1rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .icon-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .icon-btn:active {
+    transform: translateY(0);
+  }
+
+  /* TOOLTIPS */
+  [data-tooltip] {
+    position: relative;
+  }
+
+  @media (hover: hover) and (min-width: 681px) {
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-2px);
+      background: var(--text-primary);
+      color: var(--bg);
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out);
+      z-index: 220;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .topbar-actions > [data-tooltip]:last-child::after {
+      left: auto;
+      right: 0;
+      transform: translateY(-2px);
+    }
+
+    [data-tooltip]:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .topbar-actions > [data-tooltip]:last-child:hover::after {
+      transform: translateY(0);
+    }
+  }
+
+  /* DROPDOWN */
+  .dropdown { position: relative; }
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: var(--space-sm);
+    min-width: 210px;
+    max-width: 280px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    pointer-events: none;
+    transition: all 0.18s var(--ease-out);
+    z-index: 200;
+    box-shadow: var(--shadow-dropdown);
+  }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 9px var(--space-md);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    transition: background 0.12s ease, color 0.12s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .dropdown-item:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+
+  .dropdown-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: var(--space-xs) 0;
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero-kicker::before {
+    content: "";
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .full-width { grid-column: 1 / -1; }
+
+  /* CARD */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-xl);
+    scroll-margin-top: 80px;
+    transition: background 0.3s var(--ease-out), border-color 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+
+  .card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .card-icon {
+    font-size: 1.15rem;
+    opacity: 0.85;
+  }
+
+  .add-item-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    margin-top: var(--space-md);
+    padding: 8px 14px;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: .875rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .add-item-btn:hover { border-color: var(--border-focus); background: var(--accent-subtle); color: var(--text-primary); }
+  .add-item-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .art-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .art-link {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.15s var(--ease-out), transform 0.15s var(--ease-out);
+  }
+
+  .art-link:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+  }
+
+  .art-link-image {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--warm);
+  }
+
+  .art-link-image img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .art-link-image img[hidden], .media-thumb img[hidden] { display: none; }
+  .art-link-image img.book-cover { object-fit: contain; background: var(--accent-subtle); }
+
+  .art-link:hover img { transform: scale(1.045); }
+
+  .art-link-label {
+    display: block;
+    padding: 12px 14px;
+  }
+
+  .art-link-image--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+
+  .art-link-image--text .source {
+    font: 700 10px var(--font-mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .art-link-image--text .cover-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.15;
+  }
+
+  .literature-subtitle {
+    margin: var(--space-lg) 0 var(--space-md);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .selected-quotes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .selected-quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: 0;
+    padding: var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+  }
+
+  .selected-quote:first-child { grid-column: 1 / -1; }
+  .selected-quote blockquote {
+    margin: 0;
+    white-space: pre-line;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .selected-quote figcaption { margin-top: auto; color: var(--text-muted); font-size: .85rem; }
+
+  .art-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 800px) {
+    .art-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 480px) {
+    .art-links { grid-template-columns: 1fr; }
+    .selected-quotes { grid-template-columns: 1fr; }
+    .selected-quote:first-child { grid-column: auto; }
+  }
+
+  /* FORM STYLES */
+  .form-section {
+    margin-bottom: var(--space-md);
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    transition: border-color 0.15s var(--ease-out), box-shadow 0.15s var(--ease-out);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--accent-subtle);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 680px) {
+    .form-row {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: flex-end;
+    padding-top: var(--space-sm);
+    margin-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+  }
+
+  .btn {
+    padding: 9px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font: 600 0.875rem var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border-color: var(--border-focus);
+  }
+
+  .btn-primary {
+    background: var(--text-primary);
+    color: var(--bg);
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+
+  .btn-danger {
+    background: var(--danger-subtle);
+    color: var(--danger);
+    border-color: var(--danger);
+  }
+
+  .btn-danger:hover {
+    background: var(--danger);
+    color: var(--bg);
+  }
+
+  /* MEDIA CARD */
+  .media-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    scroll-margin-top: 80px;
+    transition: background 0.3s var(--ease-out), border-color 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .media-card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .media-thumb {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--warm);
+    aspect-ratio: 16/9;
+  }
+
+  [data-theme="dark"] .media-thumb {
+    background: #22221e;
+  }
+
+  .media-thumb img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .media-card:hover .media-thumb img { transform: scale(1.045); }
+
+  .thumb-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 2.5rem;
+  }
+
+  .media-thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5rem;
+    background: var(--warm);
+  }
+
+  [data-theme="dark"] .media-thumb-placeholder {
+    background: #22221e;
+  }
+
+  .media-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .media-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .media-meta {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    line-height: 1.4;
+  }
+
+  .media-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-family: var(--font-sans);
+  }
+
+  .media-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .media-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .media-actions {
+    display: flex;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+  }
+
+  .media-action-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    text-align: center;
+  }
+
+  .media-action-btn:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border-color: var(--border-focus);
+  }
+
+  /* QUOTE CARD */
+  .quote-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-xl);
+    scroll-margin-top: 80px;
+    transition: background 0.3s var(--ease-out), border-color 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    position: relative;
+  }
+
+  .quote-card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .quote-number {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.6;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    border: none;
+    background: transparent;
+    resize: none;
+    width: 100%;
+    padding: 0;
+    font-weight: 400;
+    text-wrap: pretty;
+    min-height: 4em;
+  }
+
+  .quote-text:focus {
+    outline: none;
+    color: var(--text-primary);
+  }
+
+  .quote-author {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    align-self: flex-end;
+  }
+
+  .quote-actions {
+    display: flex;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+  }
+
+  .quote-action-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    text-align: center;
+  }
+
+  .quote-action-btn:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border-color: var(--border-focus);
+  }
+
+  /* SAVE BAR */
+  .save-bar {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 0);
+    left: 0;
+    right: 0;
+    background: rgba(246, 244, 239, 0.94);
+    border-top: 1px solid var(--border);
+    padding: 12px var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    z-index: 99;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: background 0.3s var(--ease-out);
+  }
+
+  [data-theme="dark"] .save-bar {
+    background: rgba(14, 14, 12, 0.94);
+  }
+
+  .save-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    line-height: 1.4;
+  }
+
+  .save-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: 1px solid var(--text-primary);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .save-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+
+  .save-btn:active { transform: translateY(0); }
+
+  .spacer-bottom { height: 96px; }
+
+  /* EMPTY STATE */
+  .empty-state {
+    display: none;
+    grid-column: 1 / -1;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: var(--space-2xl);
+    background: var(--bg-card);
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+
+  .empty-state.is-visible { display: block; }
+
+  .empty-state h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+    margin-bottom: var(--space-md);
+  }
+
+  .empty-state p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    max-width: 44ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 820px) {
+    .grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .container { padding: var(--space-lg) var(--space-md); }
+    .card, .media-card, .quote-card { padding: var(--space-lg); }
+    .media-grid, .quotes-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 680px) {
+    .topbar {
+      padding: 8px 12px;
+      gap: 6px;
+    }
+    
+    .topbar-nav {
+      gap: 4px;
+    }
+
+    .topbar-back {
+      font-size: 0.95rem;
+      padding: 4px 6px;
+    }
+
+    .topbar-tag {
+      display: none;
+    }
+
+    .icon-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 0.92rem;
+    }
+
+    .topbar-actions {
+      gap: 4px;
+    }
+
+    .dropdown-menu {
+      min-width: 190px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 8vw, 2.6rem);
+    }
+
+    .hero-quote {
+      font-size: 0.92rem;
+    }
+
+    .save-bar {
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    .save-hint {
+      font-size: 0.75rem;
+    }
+
+    .save-btn {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+
+    .media-actions, .quote-actions {
+      flex-wrap: wrap;
+    }
+    
+    .media-action-btn, .quote-action-btn {
+      flex: 1 0 45%;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .topbar-back span:last-child {
+      display: none;
+    }
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 0.85rem;
+    }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card, .media-card, .quote-card {
+    animation: fadeUp 0.45s var(--ease-out) both;
+  }
+
+  .card:nth-child(1), .media-card:nth-child(1), .quote-card:nth-child(1) { animation-delay: 0.04s; }
+  .card:nth-child(2), .media-card:nth-child(2), .quote-card:nth-child(2) { animation-delay: 0.08s; }
+  .card:nth-child(3), .media-card:nth-child(3), .quote-card:nth-child(3) { animation-delay: 0.12s; }
+  .card:nth-child(4), .media-card:nth-child(4), .quote-card:nth-child(4) { animation-delay: 0.16s; }
+  .card:nth-child(5), .media-card:nth-child(5), .quote-card:nth-child(5) { animation-delay: 0.20s; }
+  .card:nth-child(6), .media-card:nth-child(6), .quote-card:nth-child(6) { animation-delay: 0.24s; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-nav">
+    <a href="./Index.html" class="topbar-back" data-tooltip="Back to Mentally home" aria-label="Back to home">
+      <span>Mentally</span>
+    </a>
+    <span class="topbar-tag">Artistically </span>
+  </div>
+
+  <div class="topbar-actions">
+    <a href="./safety.html" class="icon-btn" data-tooltip="Safely " aria-label="Safely ">🛡️</a>
+    <a href="./physically.html" class="icon-btn" data-tooltip="Physically " aria-label="Physically ">🏃</a>
+    <button class="icon-btn" id="themeToggle" data-tooltip="Toggle theme" aria-label="Toggle theme">☀️</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <h1 class="hero-title">Artistically </h1>
+    <p class="hero-quote">"When I feel like crying, opening a book is not enough, I need a hug."</p>
+  </div>
+
+  <div class="grid" id="grid">
+    
+    <!-- Cinema -->
+    <div class="card full-width" id="cinema-section">
+      <div class="card-header">
+        <h2 class="card-title">Cinema</h2>
+        <span class="card-icon">🎦</span>
+      </div>
+      <div class="art-links">
+        <a class="art-link" href="https://youtu.be/CnxYtSKgbgs" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://themovierat.com/wp-content/uploads/2026/06/mv5bztq2zmvlnjgty2qzos00mwq2lwi1ytytzjc4zwi0ndriztgzxkeyxkfqcgc40._v1_fmjpg_ux1000_-1870484851.jpg?w=1000&h=700&crop=1" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+          <span class="art-link-label">Fauve</span>
+        </a>
+        <a class="art-link" href="https://dn721609.ca.archive.org/0/items/a.-woman.-under.-the.-influence.-1974.1080p.-blu-ray.-h-264.-aac/A.Woman.Under.The.Influence.1974.1080p.BluRay.H264.AAC.mp4" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.plex.tv%2Fphoto%3Fsize%3Dlarge-1280%26url%3Dhttps%3A%252F%252Fmetadata-static.plex.tv%252Fd%252Fgracenote%252Fdbe83375e58945834e12664c49baa1ea.jpg&amp;f=1&amp;nofb=1&amp;ipt=507a47fb3ad5100c2a3f5b2b1a8470cad536ad5bc3ada2df3dfcdf504bac976a&amp;ipo=images" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+          <span class="art-link-label">A Woman Under the Influence</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/sA5dPI7pXMo" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://i.ytimg.com/vi/sA5dPI7pXMo/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Farewell My Concubine</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/NrMINC5xjMs" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🕯️</span><img src="https://i.ytimg.com/vi/NrMINC5xjMs/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Mirror</span>
+        </a>
+        <a class="art-link" href="https://youtube.com/playlist?list=PL2-AeqAzHT4Irz7jZh_ixy_LA9Tb8Ntrc&amp;si=BnlVZ4U-aXMgf0EI" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://i.ytimg.com/vi/KeEq_eenNWk/hqdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+          <span class="art-link-label">Cinema YouTube</span>
+        </a>
+        <a class="art-link" href="https://letterboxd.com/film/in-a-year-with-13-moons/" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://images.mubicdn.net/images/film/1460/cache-8857-1745489528/image-w1280.jpg?size=800x" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+          <span class="art-link-label">In a Year with 13 Moons</span>
+          <a class="art-link" href="https://letterboxd.com/film/taste-of-cherry/" target="_blank" rel="noopener noreferrer">
+            <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://thecompanion.in/wp-content/uploads/2022/07/b7f9e6f6-5a1b-4250-addf-ed5d10033e70.jpeg" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+            <span class="art-link-label">Taste of Cherry</span>
+          <a class="art-link" href="https://letterboxd.com/film/eternity-and-a-day/" target="_blank" rel="noopener noreferrer">
+            <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">🎦</span><img src="https://photogenie.be/wp-content/uploads/2021/10/Maxs-Header-Image.png" alt="" loading="lazy" onerror="handleMediaThumbError(this)"></span>
+            <span class="art-link-label">Eternity and a Day</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Literature -->
+    <div class="card full-width" id="literature-section">
+      <div class="card-header">
+        <h2 class="card-title">Literature</h2>
+        <span class="card-icon">📖</span>
+      </div>
+      <div class="art-links">
+        <a class="art-link" href="https://youtu.be/_UtE2WBbuJk" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://i.ytimg.com/vi/_UtE2WBbuJk/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poem: On Kindness</span>
+        </a>
+
+        <a class="art-link" href="https://youtu.be/Bp9-7LJzwpQ" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://images.trustinnews.pt/uploads/sites/5/2020/02/20190518_CLAUDIA-SAMPAIO_0018-crop-1582405515-5792x3758.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poem: Letter to Myself ◦ 🇵🇹</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/Au056Spqwew" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://i.ytimg.com/vi/Au056Spqwew/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poem: Good Bones</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/mwvtRssqJNY" target="_blank" rel="noopener noreferrer">
+            <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://i.ytimg.com/vi/mwvtRssqJNY/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poems: T’s Always This Year</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/asp5tqDql0g" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://i.ytimg.com/vi/asp5tqDql0g/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Theater: Notes from the Underground</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/YwlYnBpsTxI" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://img.iol.pt/image/id/59ac02b40cf2c8a6efbdbba3/1200.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poems: Fernando Pessoa ◦ 🇵🇹</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/NV1SCJqgfPs" target="_blank" rel="noopener noreferrer">
+          <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://i.ytimg.com/vi/NV1SCJqgfPs/maxresdefault.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poem: If Only We Had Taller Been</span>
+        </a>
+        <a class="art-link" href="https://youtu.be/D3jK9UB5Vxc" target="_blank" rel="noopener noreferrer">
+            <span class="art-link-image"><span class="thumb-fallback" aria-hidden="true">📖</span><img src="https://media.timeout.com/images/106263036/750/422/image.jpg" alt="" loading="lazy" onerror="handleMediaThumbError(this)" onload="handleMediaThumbLoad(this)"></span>
+          <span class="art-link-label">Poem: Goodbye Handbook for Sensitive Women ◦ 🇵🇹</span>
+        </a>
+      </div>
+
+      </div>
+      <h3 class="literature-subtitle">Selected lines</h3>
+      <div class="selected-quotes">
+          <figure class="selected-quote">
+            <blockquote>“Yours is the Earth and everything that’s in it”</blockquote>
+            <figcaption>— Rudyard Kipling <cite></cite></figcaption>
+          </figure>
+        <figure class="selected-quote">
+          <blockquote>“What can we do? We must live out our lives. (...) We shall bear patiently the burdens that fate imposes on us. (...) And when our final hour comes, we shall meet it humbly, (...) And God will pity us.”</blockquote>
+          <figcaption>— Anton Chekhov</figcaption>
+        </figure>
+        <figure class="selected-quote">
+          <blockquote>“Death closes all: but something ere the end, some work of noble note, may yet be done, not unbecoming men that strove with Gods.”</blockquote>
+          <figcaption>— Alfred Tennyson</figcaption>
+      </div>
+    </div>
+
+    <!-- Quotes Section -->
+    <div class="card full-width" id="quotes-section">
+      <div class="card-header">
+        <h2 class="card-title">Quotes Collection</h2>
+        <span class="card-icon">💬</span>
+      </div>
+      <div id="quotes-grid" class="grid"></div>
+      <button class="add-item-btn" onclick="showQuoteForm()">＋ Add Quote</button>
+    </div>
+
+    <!-- Quote Form (hidden by default) -->
+    <div class="card full-width" id="quote-form-card" style="display: none;">
+      <div class="card-header">
+        <h2 class="card-title">Add Quote</h2>
+        <span class="card-icon">➕</span>
+      </div>
+      <form id="quoteForm" onsubmit="addQuote(); return false;">
+        <div class="form-section">
+          <label class="form-label" for="quoteText">Quote Text *</label>
+          <textarea id="quoteText" class="form-textarea" placeholder="The quote that inspires you..." required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-section" style="flex: 1;">
+            <label class="form-label" for="quoteAuthor">Author</label>
+            <input type="text" id="quoteAuthor" class="form-input" placeholder="Who said it?">
+          </div>
+          <div class="form-section" style="flex: 1;">
+            <label class="form-label" for="quoteSource">Source</label>
+            <input type="text" id="quoteSource" class="form-input" placeholder="Book, speech, etc.">
+          </div>
+        </div>
+        <div class="form-section">
+          <label class="form-label" for="quoteTags">Tags</label>
+          <input type="text" id="quoteTags" class="form-input" placeholder="comma, separated, tags">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" onclick="hideQuoteForm()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Quote</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="spacer-bottom"></div>
+</main>
+
+<div class="save-bar">
+  <span class="save-hint">Changes save automatically · Download to back up</span>
+  <button class="save-btn" onclick="downloadFile()">⬇ Download file</button>
+</div>
+
+<script>
+// Theme initialization
+function initTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  document.getElementById('themeToggle').textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+}
+
+// Theme toggle
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '🌙' : '☀️';
+  try {
+    localStorage.setItem('mediaQuotes_theme', newTheme);
+    localStorage.setItem('safetyPlan_theme', newTheme);
+  } catch (e) {}
+});
+
+// State management
+let quoteItems = JSON.parse(localStorage.getItem('mediaQuotes_quotes')) || [];
+
+function saveData() {
+  try {
+    localStorage.setItem('mediaQuotes_quotes', JSON.stringify(quoteItems));
+  } catch (e) {
+    console.error('Failed to save data:', e);
+  }
+}
+
+// Helper functions
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function handleMediaThumbError(img) {
+  if (img.src.includes('/maxresdefault.jpg')) {
+    img.src = img.src.replace('/maxresdefault.jpg', '/hqdefault.jpg');
+  } else {
+    img.hidden = true;
+  }
+}
+
+function handleMediaThumbLoad(img) {
+  if (img.naturalWidth === 120) handleMediaThumbError(img);
+}
+
+function formatTags(tags) {
+  if (!tags) return '';
+  return tags.split(',').map(t => t.trim()).filter(Boolean).map(t => `<span class="media-tag">${escHtml(t)}</span>`).join('');
+}
+
+function renderQuotes() {
+  const grid = document.getElementById('quotes-grid');
+  
+  if (quoteItems.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state is-visible">
+        <h3>No quotes yet</h3>
+        <p>Start your collection with quotes that move you or give you strength.</p>
+        <button class="add-item-btn" onclick="showQuoteForm()">＋ Add Your First Quote</button>
+      </div>
+    `;
+    return;
+  }
+  
+  grid.innerHTML = quoteItems.map((item, index) => `
+    <div class="quote-card">
+      <div class="quote-number">${String(index + 1).padStart(2, '0')}</div>
+      <textarea class="quote-text" 
+                oninput="updateQuote(${index}, this.value)"
+                onblur="saveData()">${escHtml(item.text || 'Add your quote...')}</textarea>
+      ${item.author ? `<div class="quote-author">— ${escHtml(item.author)}${item.source ? `, <em>${escHtml(item.source)}</em>` : ''}</div>` : ''}
+      ${item.tags ? `<div class="media-tags">${formatTags(item.tags)}</div>` : ''}
+      <div class="quote-actions">
+        <button class="quote-action-btn" onclick="copyQuote(${index})">Copy</button>
+        <button class="quote-action-btn" onclick="editQuote(${index})">Edit</button>
+        <button class="quote-action-btn" onclick="deleteQuote(${index})">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Form display functions
+function showQuoteForm() {
+  document.getElementById('quote-form-card').style.display = 'block';
+  document.getElementById('quote-form-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  document.getElementById('quoteText').focus();
+}
+
+function hideQuoteForm() {
+  document.getElementById('quote-form-card').style.display = 'none';
+  document.getElementById('quoteForm').reset();
+}
+
+// Add functions
+function addQuote() {
+  const text = document.getElementById('quoteText').value;
+  const author = document.getElementById('quoteAuthor').value;
+  const source = document.getElementById('quoteSource').value;
+  const tags = document.getElementById('quoteTags').value;
+  
+  if (text) {
+    quoteItems.push({ text, author, source, tags });
+    saveData();
+    renderQuotes();
+    hideQuoteForm();
+  } else {
+    alert('Please fill in the quote text');
+  }
+}
+
+// Update functions
+function updateQuote(index, value) {
+  quoteItems[index].text = value;
+  saveData();
+}
+
+// Edit functions
+function editQuote(index) {
+  const item = quoteItems[index];
+  document.getElementById('quoteText').value = item.text || '';
+  document.getElementById('quoteAuthor').value = item.author || '';
+  document.getElementById('quoteSource').value = item.source || '';
+  document.getElementById('quoteTags').value = item.tags || '';
+  
+  showQuoteForm();
+  quoteItems.splice(index, 1);
+  saveData();
+  renderQuotes();
+}
+
+// Delete functions
+function deleteQuote(index) {
+  if (confirm('Are you sure you want to delete this quote?')) {
+    quoteItems.splice(index, 1);
+    saveData();
+    renderQuotes();
+  }
+}
+
+// View functions
+function copyQuote(index) {
+  const item = quoteItems[index];
+  const textToCopy = `"${item.text}"${item.author ? ` — ${item.author}${item.source ? `, ${item.source}` : ''}` : ''}`;
+  
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    const originalText = document.querySelector('.save-hint').textContent;
+    document.querySelector('.save-hint').textContent = 'Quote copied to clipboard!';
+    setTimeout(() => {
+      document.querySelector('.save-hint').textContent = originalText;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
+
+// Download file function
+function downloadFile() {
+  const stateJson = JSON.stringify({
+    quotes: quoteItems
+  }).replace(/</g, '\\u003c');
+  
+  const currentHtml = document.documentElement.outerHTML;
+  const injected = currentHtml.replace(
+    '</title>',
+    `</title>
+    <script>
+      const EXPORTED_MEDIA = ${stateJson};
+    <\/script>`
+  );
+  
+  const blob = new Blob([injected], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Artistically-${new Date().toISOString().slice(0,10)}.html`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// Initialize
+initTheme();
+renderQuotes();
+</script>
+</body>
+</html>
