@@ -1,58 +1,28 @@
-# Mentally Here
+# [Mentally](https://pamaral-git.github.io/mentally/)
 
-A personal companion [web app](https://pamaral-git.github.io/mentally-here/Index.html) for your wellbeing. It started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
+Here for You personally and privately. Your toolkit companion for your mental, physical and general wellbeing.
 
-> "Pain is hard to bear," he cried, "But with patience, day by day, even this shall pass away." — Theodore Tilton
+Started as a safety plan web app for myself as I disliked the apps in the App Store.
 
-In days of struggling with my own mental health and searching for safety plan apps but disliking the products I found, I realized that one of my ways of coping was to **"Create something I care about."** So I built something to get through another day that's open-sourced, customizable, private, self-hosted and free, because someone somewhere might one day need a reason still be here.
+So I built something to help anyone anywhere get through another day in a way that's open-sourced, customizable, private, self-hosted and free.
 
-## 🫂 [SAFETY PLAN](https://pamaral-git.github.io/mentally-here/safety.html)
+## OVERVIEW
 
-Your personal, offline-first mental health/suicide prevention safety plan interface for you.
+Mental health tools should be accessible, private, and truly yours without becoming another app that collects your deeply intimate data.
 
-**Why exists?** Because mental health tools should be accessible, private, and truly yours—not another app collecting your data.
+Inside [`Index.html`](https://pamaral-git.github.io/mentally/) you will find and privately customise:
+* **Safety Plan** for mental health crisis support -> [./mentally/#safely](https://pamaral-git.github.io/mentally/#safely)
+* **Physicall Health** for exercises and workouts -> [./mentally/#physically](https://pamaral-git.github.io/mentally/#physically)
+* **Artisically** for art and worthwhile distractions -> [./mentally/#physically](https://pamaral-git.github.io/mentally/#artistically)
 
-**Inside you will find and privately be able to add:**
-- Warning signs & Coping strategies
-- Emotional & Profession support contacts
-- Reasons to live & Comfort places
-- Your Personal checklists for times of crisis
-- Selection of art to keep you company
+**Quick-Start:** Use it offline by [downloading](https://github.com/pamaral-git/mentally/releases) -> Opening in your browser -> Edit in the browser -> Optionally downloading it again for backup
 
-**How it works:**
-1. Download [`safety.html`](https://pamaral-git.github.io/mentally-here/safety.html)
-2. Open it in your browser of choice
-3. Live edit it just like any other document with your information
-4. Click "Download file" to save it locally
+This is purposefuly a single `index.html` file with vanilla `JS` no dependencies
 
-**Architecture**
-- This is a single Safety Plan file in `.html` format with vanilla `JS` no dependencies
-- Editable in the browser with data saved inside the file on export
-- Relies solely on Download-Use offline in private
-
-## 🛷 [FITNESS HUB](https://pamaral-git.github.io/mentally-here/physically.html)
-
-A private, self-hosted, single-file web app that acts as physical health repository inside this personal companion for you.
-
-**Inside you will find:**
-- Calendar and To-Do integration
-- Broad library of +122 cross category workouts
-- Curated Audio Media (Audiobook and Music)
-- Session intention and packaging
-
-**How it works:**
-1. Download [`physically.html`](https://pamaral-git.github.io/mentally-here/physically.html) (single html file with everything and vanilla `JS`)
-2. Open it in your browser of choice (any browser. No login or tracking)
+**ROADMAP:** Tiny Local AI Models; Deep and Guided Reflection (Private and On-Device).
 
 ---
-**More Resources:**
+**References**
 - 👩‍⚕️ [Safety Plan Explained, Therapist Emma McAdam](https://youtu.be/C2Ja4R6Mq4Y)
 - 👩‍⚕️ [Safety Plan Guide, Therapist Kati Morton](https://youtu.be/om5E4K1bCL)
 - Templates: [⓵](https://988lifeline.org/wp-content/uploads/2016/08/Brown_StanleySafetyPlanTemplate.pdf) • [⓶](https://therapyinanutshell.com/wp-content/uploads/2025/04/Revised.png) • [⓷](https://therapyinanutshell.com/wp-content/uploads/2025/04/Revised-2.png) • [App](https://suicidesafetyplan.app)
-
-
----
-**ROADMAP:**
-
-- **Private Reflection** ◦ User journaling and safety plan drafting running locally to help articulate warning signs, strategies, and reasons to live from the user's own words
-- **Deep Session** ◦ [Inspired by this](https://youtube.com/shorts/wwiTBL_hYIM) we will add this same guided structured reflection leveraging the user's context completely locally.
